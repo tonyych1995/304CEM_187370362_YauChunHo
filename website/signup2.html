@@ -1,0 +1,90 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css "href="CSS/login.css"/>
+</head>
+
+<script>
+$(document).ready(function(){   
+	// handle button clicks         
+  $('#buttonID').click(function() {
+		// make an ajax call
+		alert($('#formID').serialize());
+    $.ajax({
+            dataType: 'jsonp',
+            jsonpCallback: '_wrapper',
+            data: $('#formID').serialize(),
+            type: 'POST',
+            url: "http://127.0.0.1:4242/login",
+            success: handleButtonResponse,
+        });
+    });
+    function handleButtonResponse(data){
+      alert(data);
+      // parse the json string
+      var jsonObject = JSON.parse(data);
+      $('#reponseID').append( jsonObject.message );
+    }
+  
+	
+	// register button
+	$("#buttonme").click(function(){
+		alert("Information sent, please click to check result.");
+		var tempName, tempPassword;
+		tempName = document.forms["signin"]["Name"].value;
+		tempPassword = document.forms["signin"]["Password"].value;
+		if(tempName == "" || tempPassword == "")
+		{
+			alert("Please fill in all the blanks.");
+		}
+		else
+		{
+			$.ajax({
+				url: "http://127.0.0.1:4242/login", 
+				type: 'POST',
+				data: $('#formID').serialize(),
+				success: function(result){
+					alert("Registration success");
+					alert("Thanks for creating an account, your username is: " + result.Name + ". Please remember your account information.");
+					window.location.href = "http://127.0.0.1:4242/login";
+					}, error: function (xhr, textStatus, errorThrown) {
+						alert("Registration failed, maybe username is existed, please try agian with other username.");
+						console.log(textStatus);
+      		}
+				});
+			}
+	});
+});
+</script>
+
+
+
+
+<body>
+  
+  <body>
+  <div class="layer">      
+   <div class="style1">
+  <div id="signupform">
+		<br>
+			<h3>Register</h3>
+			
+
+  	<form id="formID" name="signin">
+    	Username: <input type="text" name="Name"/><br>
+			Password: <input type="password" name="Password">
+      
+      
+		</form>
+    <button id="buttonme" class="button button1">    	Register  	</button>
+	</div></div>	
+  
+  <ul>
+    <li> <a class="active" href="/index">Home </a> </li>
+    <li> <a href="/loginpage">Log in</a> </li>
+    <li> <a href="/Signuppage">Register</a></li>
+  </ul>
+
+</body>
+
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+     
+  <head>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Products - Apex Connect</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrapmin.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Custom styles for this template -->
+    <link href="css/businesscasual.css" rel="stylesheet">
+<script>
+$(document).ready(function(){  
+		
+		 function handleButtonResponse(data){
+      alert(data);
+      // parse the json string
+      var jsonObject = JSON.parse(data);
+      $('#reponseID').append( jsonObject.message );
+    }
+           
+    
+ 		//Favorite List 1
+		$("#favorite1_button").click(function(){
+		
+		var  favorite_ID, favorite_Title, favorite_Img;
+		
+		favorite_ID = "001";
+		favorite_Title = "The Remnants";
+		favorite_Img = "theremnants.png";
+			$.ajax({
+				url: "http://127.0.0.1:4242/addfavourlist", 
+				type: 'POST',
+				data: {
+				"Title": favorite_Title,
+				"ID": favorite_ID,
+				"Img": favorite_Img},
+				success: function(result){
+					alert("Game added to favorite chart!");
+					}, error: function (xhr, textStatus, errorThrown) {
+						alert("Removed from favorite chart.");
+						console.log(textStatus);
+      		}
+				});
+			
+			
+	});
+	
+	
+	//Favorite List 2
+		$("#favorite2_button").click(function(){
+		
+		var  favorite_ID, favorite_Title, favorite_Img;
+		
+		favorite_ID = "002";
+		favorite_Title = "Rainbow Flurries";
+		favorite_Img = "rainbowflurries.jpg";
+			$.ajax({
+				url: "http://127.0.0.1:4242/addfavourlist", 
+				type: 'POST',
+				data: {
+				"Title": favorite_Title,
+				"ID": favorite_ID,
+				"Img": favorite_Img},
+				success: function(result){
+					alert("Game added to favorite chart!");
+					//document.getElementById("favorite_button").src ="img/like.png";
+					//window.location.href = "/Item?ID="+ID ;
+					}, error: function (xhr, textStatus, errorThrown) {
+						alert("Removed from favorite chart.");
+						//document.getElementById("favorite_button").src ="img/unlike.png";
+						console.log(textStatus);
+      		}
+				});
+			
+			
+	});
+		 
+		 
+
+ 
+          });
+        
+</script>
+  </head>
+
+  <body>
+
+    <h1 class="site-heading text-center text-white d-none d-lg-block">
+      <span class="site-heading-upper text-primary mb-3">Connecting the apex gamers</span>
+      <span class="site-heading-lower">Apex Connect</span>
+    </h1>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Apex Connect</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="index">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="about">About</a>
+            </li>
+            <li class="nav-item active px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="products">Products</a>
+            </li>
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="store">Store</a>
+            </li>
+            <li class="nav-item px-lg-4">
+                <a class="nav-link text-uppercase text-expanded" href="members">Members</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!--below is the sections, copy new one to create new game-->
+    <section class="page-section">
+      <div class="container">
+        <div class="product-item">
+          <div class="product-item-title d-flex">
+            <div class="bg-faded p-5 d-flex mr-auto rounded">
+              <h2 class="section-heading mb-0">
+                <span class="section-heading-upper">Last revolt, in the last days</span>
+                <span class="section-heading-lower" id='title1'><b>The Remnants</b></span>
+              </h2>
+            </div>
+          </div>
+          <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="img/theremnants.png" id='img1' alt="">
+          <div class="product-item-description d-flex mr-auto">
+            <div class="bg-faded p-5 rounded">
+              <p class="mb-0"> <b>Minium System Requirement</b></p>
+              <p class="mb-0"> CPU: Quad Core i3</p>
+              <p class="mb-0"> Memory: 4GB</p>
+              <p class="mb-0"> Graphic Card: GTX770</p>
+              <p class="mb-0"> Space: 30GB</p>
+              <p class="mb-0"> OS: Windows 7</p>
+              <button class="fav-list fav-btn btn btn-primary" onclick="window.location.href ='members' ">Download</button>
+              <!--favourite button 1-->
+              <input class="btn btn-primary" id='favorite1_button' value='Add/Remove chart' type='button'>
+                
+
+            </div>  
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="container">
+        <div class="product-item">
+          <div class="product-item-title d-flex">
+            <div class="bg-faded p-5 d-flex mr-auto rounded"> <!--mr-auto (r/l) can change position-->
+              <h2 class="section-heading mb-0">
+                <span class="section-heading-upper">The first heroes</span>
+                <span class="section-heading-lower"><b>Rainbow Flurries</b></span>
+              </h2>
+            </div>
+          </div>
+          <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="img/rainbowflurries.jpg" alt="">
+          <div class="product-item-description d-flex mr-auto">
+            <div class="bg-faded p-5 rounded">
+              <p class="mb-0"> <b>Minium System Requirement</b></p>
+              <p class="mb-0"> CPU: Snapdragon 400 series</p>
+              <p class="mb-0"> Memory: 3GB</p>
+              <p class="mb-0"> Space: 2.4GB</p>
+              <p class="mb-0"> OS: iOS / Android</p>
+              <button class="fav-list fav-btn btn btn-primary" onclick="window.location.href ='members' ">Download</button>
+              <!--favourite button 1-->
+              <input class="btn btn-primary" id='favorite2_button' value='Add/Remove chart' type='button'>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer text-faded text-center py-5">
+      <div class="container">
+        <p class="m-0 small">Copyright &copy; Your Website 2018</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>
